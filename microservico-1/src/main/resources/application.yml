@@ -16,3 +16,7 @@ eureka:
 ribbon:
   eureka:
     enabled: true
+
+feign:
+  hystrix:
+    enabled: true

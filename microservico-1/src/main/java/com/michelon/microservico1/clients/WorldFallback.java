@@ -1,7 +1,9 @@
 package com.michelon.microservico1.clients;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class WorldFallback implements WorldClient {
 
     @Override
