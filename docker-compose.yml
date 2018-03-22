@@ -1,0 +1,118 @@
+version: '3'
+services:
+    eureka:
+      build:
+        context: ./eureka-server
+      image: maiconmichelon/eureka-server
+      container_name: eureka-server
+      ports: 
+        - "8761:8761"
+      networks: 
+        - rede-microservicos
+
+    ms1-1:
+      build:
+        context: ./microservico-1
+      image: maiconmichelon/ms1
+      container_name: ms1-1
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms1-2:
+      build:
+        context: ./microservico-1
+      image: maiconmichelon/ms1
+      container_name: ms1-2
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms2-1:
+      build:
+        context: ./microservico-2
+      image: maiconmichelon/ms2
+      container_name: ms2-1
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms2-2:
+      build:
+        context: ./microservico-2
+      image: maiconmichelon/ms2
+      container_name: ms2-2
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms2-3:
+      build:
+        context: ./microservico-2
+      image: maiconmichelon/ms2
+      container_name: ms2-3
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms2-4:
+      build:
+        context: ./microservico-2
+      image: maiconmichelon/ms2
+      container_name: ms2-4
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms3-1:
+      build:
+        context: ./microservico-3
+      image: maiconmichelon/ms3
+      container_name: ms3-1
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms3-2:
+      build:
+        context: ./microservico-3
+      image: maiconmichelon/ms3
+      container_name: ms3-2
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    ms3-3:
+      build:
+        context: ./microservico-3
+      image: maiconmichelon/ms3
+      container_name: ms3-3
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
+    zuul:
+      build:
+        context: ./gateway
+      image: maiconmichelon/zuul
+      container_name: zuul
+      ports: 
+        - "8084:8084"
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+    
+
+networks:
+  rede-microservicos:
+      driver: bridge
