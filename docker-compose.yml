@@ -30,6 +30,16 @@ services:
       depends_on: 
         - eureka
 
+    ms1-3:
+      build:
+        context: ./microservico-1
+      image: maiconmichelon/ms1
+      container_name: ms1-3
+      networks: 
+        - rede-microservicos
+      depends_on: 
+        - eureka
+
     ms2-1:
       build:
         context: ./microservico-2
@@ -55,16 +65,6 @@ services:
         context: ./microservico-2
       image: maiconmichelon/ms2
       container_name: ms2-3
-      networks: 
-        - rede-microservicos
-      depends_on: 
-        - eureka
-
-    ms2-4:
-      build:
-        context: ./microservico-2
-      image: maiconmichelon/ms2
-      container_name: ms2-4
       networks: 
         - rede-microservicos
       depends_on: 
